@@ -224,6 +224,12 @@ connect = 127.0.0.1:56969
 [shadowsocksssl]
 accept = 7240
 connect = 127.0.0.1:7230
+[squid]
+accept = 8181
+connect = 127.0.0.1:8080
+[squid]
+accept = 3129
+connect = 127.0.0.1:3128
 END
 
 echo "=================  membuat Sertifikat OpenSSL ======================"
