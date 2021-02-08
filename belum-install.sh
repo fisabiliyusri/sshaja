@@ -229,11 +229,12 @@ END
 echo "=================  membuat Sertifikat OpenSSL ======================"
 echo "========================================================="
 #membuat sertifikat
+cd /etc/stunnel/
 openssl genrsa -out key.pem 2048
 openssl req -new -x509 -key key.pem -out cert.pem -days 1095 \
 -subj "/C=$country/ST=$state/L=$locality/O=$organization/OU=$organizationalunit/CN=$commonname/emailAddress=$email"
 cat key.pem cert.pem >> /etc/stunnel/stunnel.pem
-
+cd
 # konfigurasi stunnel
 sed -i 's/ENABLED=0/ENABLED=1/g' /etc/default/stunnel4
 cd
