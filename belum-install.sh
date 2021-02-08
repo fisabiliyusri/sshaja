@@ -105,7 +105,6 @@ mkdir -p /home/vps/public_html
 echo "<pre>Setup by SLSSH</pre>" > /home/vps/public_html/index.html
 wget -O /etc/nginx/conf.d/vps.conf "https://raw.githubusercontent.com/fisabiliyusri/Betatest/master/debian9/vps.conf"
 
-# server settings
 
 echo "===  install neofetch  ==="
 # install neofetch
@@ -225,14 +224,6 @@ connect = 127.0.0.1:56969
 [shadowsocksssl]
 accept = 7240
 connect = 127.0.0.1:7230
-[squid]
-accept = 8181
-connect = 127.0.0.1:8080
-[squid]
-accept = 3129
-connect = 127.0.0.1:3128
-
-
 END
 
 echo "=================  membuat Sertifikat OpenSSL ======================"
