@@ -321,7 +321,6 @@ wget -O vpn-beta "https://raw.githubusercontent.com/fisabiliyusri/Betatest/maste
 wget -O shadowsl "https://raw.githubusercontent.com/fisabiliyusri/Betatest/master/debian9/Auto-Install-Shadowsocks-SL.sh"
 wget -O monitorvpn "https://raw.githubusercontent.com/fisabiliyusri/Betatest/master/auto-install-openvpn-monitor.sh"
 wget --no-check-certificate -O shadowsocks-all "https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocks-all.sh"
-wget -O install-config "https://raw.githubusercontent.com/fisabiliyusri/Betatest/master/install-config.sh"
 wget -O about "https://raw.githubusercontent.com/fisabiliyusri/sshsl/master/debian9/about.sh"
 wget -O delete "https://raw.githubusercontent.com/fisabiliyusri/sshsl/master/debian9/delete.sh"
 
@@ -341,7 +340,6 @@ chmod +x vpn-beta
 chmod +x shadowsl
 chmod +x monitorvpn
 chmod +x shadowsocks-all
-chmod +x install-config
 chmod +x about
 chmod +x delete
 
