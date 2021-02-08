@@ -128,8 +128,7 @@ apt-get -y update
 
 # setting port ssh
 cd
-# sed -i 's/PasswordAuthentication no/PasswordAuthentication yes/g'
-# /etc/ssh/sshd_config
+sed -i 's/PasswordAuthentication no/PasswordAuthentication yes/g' /etc/ssh/sshd_config
 sed -i '/Port 22/a Port 1078' /etc/ssh/sshd_config
 sed -i '/Port 22/a Port 8000' /etc/ssh/sshd_config
 sed -i '/Port 22/a Port 400' /etc/ssh/sshd_config
@@ -137,21 +136,21 @@ sed -i '/Port 22/a Port 200' /etc/ssh/sshd_config
 sed -i '/Port 22/a Port 143' /etc/ssh/sshd_config
 sed -i 's/#Port 22/Port 22/g' /etc/ssh/sshd_config
 sed -i 'ListenAddress 0.0.0.0' /etc/ssh/sshd_config
-sed -i 'HostKey /etc/ssh/ssh_host_rsa_key' /etc/ssh/sshd_config
-sed -i 'HostKey /etc/ssh/ssh_host_ecdsa_key' /etc/ssh/sshd_config
-sed -i 'HostKey /etc/ssh/ssh_host_ed25519_key' /etc/ssh/sshd_config
-sed -i 'PermitRootLogin yes' /etc/ssh/sshd_config
-sed -i 'MaxSessions 1024' /etc/ssh/sshd_config
-sed -i 'PubkeyAuthentication yes' /etc/ssh/sshd_config
-sed -i 'PasswordAuthentication yes' /etc/ssh/sshd_config
-sed -i 'PermitEmptyPasswords no' /etc/ssh/sshd_config
-sed -i 'ChallengeResponseAuthentication no' /etc/ssh/sshd_config
-sed -i 'UsePAM yes' /etc/ssh/sshd_config
-sed -i 'X11Forwarding yes' /etc/ssh/sshd_config
-sed -i 'PrintMotd no' /etc/ssh/sshd_config
-sed -i 'ClientAliveInterval 240' /etc/ssh/sshd_config
-sed -i 'ClientAliveCountMax 2' /etc/ssh/sshd_config
-sed -i 'UseDNS no' /etc/ssh/sshd_config
+echo "HostKey /etc/ssh/ssh_host_rsa_key" /etc/ssh/sshd_config
+echo "HostKey /etc/ssh/ssh_host_ecdsa_key" /etc/ssh/sshd_config
+echo "HostKey /etc/ssh/ssh_host_ed25519_key" /etc/ssh/sshd_config
+echo "PermitRootLogin yes" /etc/ssh/sshd_config
+echo "MaxSessions 1024" /etc/ssh/sshd_config
+echo "PubkeyAuthentication yes" /etc/ssh/sshd_config
+echo "PasswordAuthentication yes" /etc/ssh/sshd_config
+echo "PermitEmptyPasswords no" /etc/ssh/sshd_config
+echo "ChallengeResponseAuthentication no" /etc/ssh/sshd_config
+echo "UsePAM yes" /etc/ssh/sshd_config
+echo "X11Forwarding yes" /etc/ssh/sshd_config
+echo "PrintMotd no" /etc/ssh/sshd_config
+echo "ClientAliveInterval 240" /etc/ssh/sshd_config
+echo "ClientAliveCountMax 2" /etc/ssh/sshd_config
+echo "UseDNS no" /etc/ssh/sshd_config
 /etc/init.d/ssh restart
 
 echo "===  install Dropbear ==="
@@ -225,14 +224,6 @@ connect = 127.0.0.1:56969
 [shadowsocksssl]
 accept = 7240
 connect = 127.0.0.1:7230
-[squid]
-accept = 8181
-connect = 127.0.0.1:8080
-[squid]
-accept = 3129
-connect = 127.0.0.1:3128
-
-
 END
 
 echo "=================  membuat Sertifikat OpenSSL ======================"
