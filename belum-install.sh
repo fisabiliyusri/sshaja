@@ -268,7 +268,7 @@ echo 'Please send in your comments and/or suggestions to zaf@vsnl.com'
 # download script
 cd /usr/bin
 wget -O menu "https://raw.githubusercontent.com/fisabiliyusri/Betatest/master/debian9/menu.sh"
-wget -O usernew "https://raw.githubusercontent.com/fisabiliyusri/Betatest/master/debian9/usernew.sh"
+wget -O usernew "https://raw.githubusercontent.com/fisabiliyusri/sshaja/main/usernew.sh"
 wget -O trial "https://raw.githubusercontent.com/fisabiliyusri/Betatest/master/debian9/trial.sh"
 wget -O hapus "https://raw.githubusercontent.com/fisabiliyusri/sshsl/master/debian9/hapus.sh"
 wget -O cek "https://raw.githubusercontent.com/fisabiliyusri/Betatest/master/debian9/user-login.sh"
