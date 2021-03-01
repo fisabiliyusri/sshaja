@@ -9,44 +9,14 @@ MYIP2="s/xxxxxxxxx/$MYIP/g";
 
 # detail nama perusahaan
 country=ID
-state=SeluruhIndonesia
-locality=JawaSumateraKalimantanPapua
+state=SGIndonesia
+locality=Nusantara
 organization=SLSSH
 commonname=www.hbogo.eu
-email=sulaiman.xl@facebook.com
-
-# go to root
-
-# configure rc.local
-cat <<EOF >/etc/rc.local
-#!/bin/sh -e
-#
-# rc.local
-#
-# This script is executed at the end of each multiuser runlevel.
-# Make sure that the script will "exit 0" on success or any other
-# value on error.
-#
-# In order to enable or disable this script just change the execution
-# bits.
-#
-# By default this script does nothing.
-
-exit 0
-EOF
-chmod +x /etc/rc.local
-systemctl daemon-reload
-systemctl start rc-local
 
 # disable ipv6
 echo 1 > /proc/sys/net/ipv6/conf/all/disable_ipv6
 sed -i '$ i\echo 1 > /proc/sys/net/ipv6/conf/all/disable_ipv6' /etc/rc.local
-
-# add dns server ipv4
-echo "nameserver 1.1.1.1" > /etc/resolv.conf
-echo "nameserver 1.0.0.1" >> /etc/resolv.conf
-sed -i '$ i\echo "nameserver 1.1.1.1" > /etc/resolv.conf' /etc/rc.local
-sed -i '$ i\echo "nameserver 1.0.0.1" >> /etc/resolv.conf' /etc/rc.local
 
 # install wget and curl
 apt-get -y install wget curl
@@ -127,30 +97,13 @@ apt-get -y update
 
 # setting port ssh
 cd
-# sed -i 's/PasswordAuthentication no/PasswordAuthentication yes/g'
+sed -i 's/PasswordAuthentication no/PasswordAuthentication yes/g'
 # /etc/ssh/sshd_config
-sed -i '/Port 22/a Port 1078' /etc/ssh/sshd_config
 sed -i '/Port 22/a Port 8000' /etc/ssh/sshd_config
-sed -i '/Port 22/a Port 400' /etc/ssh/sshd_config
+sed -i '/Port 22/a Port 40000' /etc/ssh/sshd_config
 sed -i '/Port 22/a Port 200' /etc/ssh/sshd_config
 sed -i '/Port 22/a Port 143' /etc/ssh/sshd_config
 sed -i 's/#Port 22/Port 22/g' /etc/ssh/sshd_config
-sed -i 'ListenAddress 0.0.0.0' /etc/ssh/sshd_config
-sed -i 'HostKey /etc/ssh/ssh_host_rsa_key' /etc/ssh/sshd_config
-sed -i 'HostKey /etc/ssh/ssh_host_ecdsa_key' /etc/ssh/sshd_config
-sed -i 'HostKey /etc/ssh/ssh_host_ed25519_key' /etc/ssh/sshd_config
-sed -i 'PermitRootLogin yes' /etc/ssh/sshd_config
-sed -i 'MaxSessions 1024' /etc/ssh/sshd_config
-sed -i 'PubkeyAuthentication yes' /etc/ssh/sshd_config
-sed -i 'PasswordAuthentication yes' /etc/ssh/sshd_config
-sed -i 'PermitEmptyPasswords no' /etc/ssh/sshd_config
-sed -i 'ChallengeResponseAuthentication no' /etc/ssh/sshd_config
-sed -i 'UsePAM yes' /etc/ssh/sshd_config
-sed -i 'X11Forwarding yes' /etc/ssh/sshd_config
-sed -i 'PrintMotd no' /etc/ssh/sshd_config
-sed -i 'ClientAliveInterval 240' /etc/ssh/sshd_config
-sed -i 'ClientAliveCountMax 2' /etc/ssh/sshd_config
-sed -i 'UseDNS no' /etc/ssh/sshd_config
 /etc/init.d/ssh restart
 
 echo "===  install Dropbear ==="
@@ -159,7 +112,7 @@ echo "===  install Dropbear ==="
 apt-get -y install dropbear
 sed -i 's/NO_START=1/NO_START=0/g' /etc/default/dropbear
 sed -i 's/DROPBEAR_PORT=22/DROPBEAR_PORT=44/g' /etc/default/dropbear
-sed -i 's/DROPBEAR_EXTRA_ARGS=/DROPBEAR_EXTRA_ARGS="-p 450 -p 550 -p 9000 -p 77 "/g' /etc/default/dropbear
+sed -i 's/DROPBEAR_EXTRA_ARGS=/DROPBEAR_EXTRA_ARGS="-p 55000 -p 9000 -p 77 "/g' /etc/default/dropbear
 echo "/bin/false" >> /etc/shells
 echo "/usr/sbin/nologin" >> /etc/shells
 /etc/init.d/ssh restart
@@ -188,20 +141,14 @@ connect = 127.0.0.1:22
 [sslopenssh]
 accept = 43
 connect = 127.0.0.1:143
-[sshsslssr]
-accept = 69
-connect = 127.0.0.1:6969
 [sslopenssh]
-accept = 600
-connect = 127.0.0.1:400
+accept = 4000
+connect = 127.0.0.1:40000
 [sshopenssh]
 accept = 700
 connect = 127.0.0.1:200
 [sshopenssh]
 accept = 800
-connect = 127.0.0.1:1078
-[sshopenssh]
-accept = 900
 connect = 127.0.0.1:8000
 [ssldropbear]
 accept = 444
@@ -210,26 +157,11 @@ connect = 127.0.0.1:44
 accept = 777
 connect = 127.0.0.1:77
 [ssldropbear]
-accept = 540
-connect = 127.0.0.1:450
-[ssldropbear]
-accept = 551
-connect = 127.0.0.1:550
+accept = 56000
+connect = 127.0.0.1:55000
 [ssldropbear]
 accept = 9900
 connect = 127.0.0.1:9000
-[openvpn]
-accept = 569
-connect = 127.0.0.1:56969
-[shadowsocksssl]
-accept = 7240
-connect = 127.0.0.1:7230
-[squid]
-accept = 8181
-connect = 127.0.0.1:8080
-[squid]
-accept = 3129
-connect = 127.0.0.1:3128
 END
 
 echo "=================  membuat Sertifikat OpenSSL ======================"
@@ -332,9 +264,6 @@ echo; echo 'Installation has completed.'
 echo 'Config file is at /usr/local/ddos/ddos.conf'
 echo 'Please send in your comments and/or suggestions to zaf@vsnl.com'
 
-# xml parser
-cd
-apt-get install -y libxml-parser-perl
 
 # download script
 cd /usr/bin
@@ -348,10 +277,6 @@ wget -O member "https://raw.githubusercontent.com/fisabiliyusri/sshsl/master/deb
 wget -O crot69 "https://raw.githubusercontent.com/fisabiliyusri/sshsl/master/debian9/restart.sh"
 wget -O speedtest "https://raw.githubusercontent.com/fisabiliyusri/sshsl/master/debian9/speedtest_cli.py"
 wget -O info "https://raw.githubusercontent.com/fisabiliyusri/sshsl/master/debian9/info.sh"
-wget -O vpn-beta "https://raw.githubusercontent.com/fisabiliyusri/Betatest/master/vpnbeta.sh"
-wget -O shadowsl "https://raw.githubusercontent.com/fisabiliyusri/Betatest/master/debian9/Auto-Install-Shadowsocks-SL.sh"
-wget -O monitorvpn "https://raw.githubusercontent.com/fisabiliyusri/Betatest/master/auto-install-openvpn-monitor.sh"
-wget --no-check-certificate -O shadowsocks-all "https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocks-all.sh"
 wget -O about "https://raw.githubusercontent.com/fisabiliyusri/sshsl/master/debian9/about.sh"
 wget -O delete "https://raw.githubusercontent.com/fisabiliyusri/sshsl/master/debian9/delete.sh"
 
@@ -367,10 +292,6 @@ chmod +x member
 chmod +x crot69
 chmod +x speedtest
 chmod +x info
-chmod +x vpn-beta
-chmod +x shadowsl
-chmod +x monitorvpn
-chmod +x shadowsocks-all
 chmod +x about
 chmod +x delete
 
