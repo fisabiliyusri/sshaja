@@ -227,7 +227,7 @@ chmod +x /usr/bin/build
 chmod +x /etc/rc.local
 
 # Custom Banner SSH
-wget -O /etc/issue.net "https://raw.githubusercontent.com/fisabiliyusri/Betatest/master/debian9/banner-custom.conf"
+wget -O /etc/issue.net "https://raw.githubusercontent.com/fisabiliyusri/sshaja/main/banner-custom.conf"
 chmod +x /etc/issue.net
 
 echo "Banner /etc/issue.net" >> /etc/ssh/sshd_config
@@ -272,7 +272,6 @@ wget -O usernew "https://raw.githubusercontent.com/fisabiliyusri/sshaja/main/use
 wget -O trial "https://raw.githubusercontent.com/fisabiliyusri/sshaja/main/trial.sh"
 wget -O hapus "https://raw.githubusercontent.com/fisabiliyusri/sshsl/master/debian9/hapus.sh"
 wget -O cek "https://raw.githubusercontent.com/fisabiliyusri/Betatest/master/debian9/user-login.sh"
-wget -O cekconfig "https://raw.githubusercontent.com/fisabiliyusri/Betatest/master/cekconfig.sh"
 wget -O member "https://raw.githubusercontent.com/fisabiliyusri/sshsl/master/debian9/user-list.sh"
 wget -O crot69 "https://raw.githubusercontent.com/fisabiliyusri/sshsl/master/debian9/restart.sh"
 wget -O speedtest "https://raw.githubusercontent.com/fisabiliyusri/sshsl/master/debian9/speedtest_cli.py"
@@ -287,7 +286,6 @@ chmod +x usernew
 chmod +x trial
 chmod +x hapus
 chmod +x cek
-chmod +x cekconfig
 chmod +x member
 chmod +x crot69
 chmod +x speedtest
